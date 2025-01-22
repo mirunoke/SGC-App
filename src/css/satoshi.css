@@ -1,0 +1,111 @@
+/**
+ * @license
+ *
+ * Font Family: Satoshi
+ * Designed by: Deni Anggara
+ * URL: https://www.fontshare.com/fonts/satoshi
+ * © 2023 Indian Type Foundry
+ *
+ * Font Styles:
+ * Satoshi Light
+ * Satoshi Light Italic
+ * Satoshi Regular
+ * Satoshi Italic
+ * Satoshi Medium
+ * Satoshi Medium Italic
+ * Satoshi Bold
+ * Satoshi Bold Italic
+ * Satoshi Black
+ * Satoshi Black Italic
+ *
+*/
+
+@font-face {
+    font-family: "Satoshi";
+    src:
+    url("../fonts/Tommy-Soft.otf") format("OpenType");
+    font-weight: 300;
+    font-display: swap;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Satoshi";
+    src:
+    url("../fonts/Tommy-Soft.otf") format("OpenType");
+    font-weight: 300;
+    font-display: swap;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Satoshi";
+    src:
+    url("../fonts/Tommy-Soft.otf") format("OpenType");
+    font-weight: 400;
+    font-display: swap;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Satoshi";
+    src: 
+    url("../fonts/Tommy-Soft.otf") format("OpenType");
+    font-weight: 400;
+    font-display: swap;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Satoshi";
+    src:
+    url("../fonts/Tommy-Soft.otf") format("OpenType");
+    font-weight: 500;
+    font-display: swap;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Satoshi";
+    src:
+    url("../fonts/Tommy-Soft.otf") format("OpenType");
+    font-weight: 500;
+    font-display: swap;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Satoshi";
+    src: 
+    url("../fonts/Tommy-Soft.otf") format("OpenType");
+    font-weight: 700;
+    font-display: swap;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Satoshi";
+    src:
+    url("../fonts/Tommy-Soft.otf") format("OpenType");
+    font-weight: 700;
+    font-display: swap;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Satoshi";
+    src: 
+    url("../fonts/Tommy-Soft.otf") format("OpenType");
+    font-weight: 900;
+    font-display: swap;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Satoshi";
+    src: 
+    url("../fonts/Tommy-Soft.otf") format("OpenType");
+    font-weight: 900;
+    font-display: swap;
+    font-style: italic;
+}

@@ -1,0 +1,201 @@
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+
+
+// Roles ajustados al flujo del proceso
+enum UserRole {
+  SOLICITANTE   // Persona que solicita documentos
+  REVISOR       // Persona que aprueba/rechaza solicitudes
+  RESPONSABLE   // Controla documentación y procesos de divulgación
+  ADMIN         // Permisos completos
+}
+
+// Estados de aprobación de documentos
+enum ApprovalStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+// Estado del documento
+enum DocumentStatus {
+  VIGENTE
+  OBSOLETO
+  EN_REVISION
+}
+
+// Tipos de eventos en la bitácora
+enum EventType {
+  CREATED
+  UPDATED
+  APPROVED
+  REJECTED
+  OBSOLETED
+  SHARED
+  DOWNLOADED
+}
+
+
+// Usuarios con roles, autenticación y soporte para Two-Factor Authentication
+model User {
+  id                  String                @id @default(cuid())
+  name                String
+  email               String                @unique
+  emailVerified       DateTime?
+  image               String?
+  password            String
+  role                UserRole              @default(SOLICITANTE)
+  isTwoFactorEnabled  Boolean               @default(false)
+  twoFactorConfirmation TwoFactorConfirmation?
+
+  // Relación con cuentas de autenticación (por ejemplo: OAuth)
+  accounts            Account[]
+
+  // Relación con documentos y aprobaciones
+  approvals           DocumentApproval[]
+  events              DocumentEvent[]
+
+  createdAt           DateTime              @default(now())
+  updatedAt           DateTime              @updatedAt
+}
+
+// Cuenta para soportar autenticación externa (OAuth)
+model Account {
+  id                 String   @id @default(cuid())
+  userId             String
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?  @db.Text
+  access_token       String?  @db.Text
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?  @db.Text
+  session_state      String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+// Tokens para restablecimiento de contraseña y autenticación de dos factores
+model VerificationToken {
+  id      String   @id @default(cuid())
+  email   String
+  token   String   @unique
+  expires DateTime
+
+  @@unique([email, token])
+}
+
+model PasswordResetToken {
+  id      String   @id @default(cuid())
+  email   String
+  token   String   @unique
+  expires DateTime
+
+  @@unique([email, token])
+}
+
+model TwoFactorToken {
+  id      String   @id @default(cuid())
+  email   String
+  token   String   @unique
+  expires DateTime
+
+  @@unique([email, token])
+}
+
+model TwoFactorConfirmation {
+  id      String @id @default(cuid())
+  userId  String
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId])
+}
+
+
+// Documentos principales
+model Document {
+  id          String           @id @default(cuid())
+  code        String?          // Código único del documento
+  title       String           // Título del documento
+  description String?          // Descripción del documento
+  status      DocumentStatus   @default(EN_REVISION)
+  category    String?          // Categoría del documento
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  // Control de versiones
+  versions    DocumentVersion[]
+
+  // Relación con aprobaciones
+  approvals   DocumentApproval[]
+
+  // Bitácora de eventos relacionados con el documento
+  events      DocumentEvent[]
+}
+
+// Versiones de documentos
+model DocumentVersion {
+  id            String    @id @default(cuid())
+  versionNumber Int       // Número de versión
+  fileUrl       String    // URL del archivo en Firebase
+  isObsolete    Boolean   @default(false)
+  reasonObsolete String?  // Justificación para obsolescencia
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Relación con el documento principal
+  documentId String
+  document   Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+
+  // Bitácora de eventos relacionados con la versión
+  events     DocumentEvent[]
+}
+
+// Aprobaciones (flujo de solicitudes)
+model DocumentApproval {
+  id          String         @id @default(cuid())
+  status      ApprovalStatus @default(PENDING)
+  comments    String?        // Comentarios del revisor
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  // Relación con el usuario que aprueba/rechaza
+  userId String
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Relación con el documento
+  documentId String
+  document   Document @relation(fields: [documentId], references: [id])
+}
+
+// Bitácora de eventos
+model DocumentEvent {
+  id          String    @id @default(cuid())
+  eventType   EventType
+  description String?   // Descripción opcional del evento
+  createdAt   DateTime  @default(now())
+
+  // Relación con el usuario que generó el evento
+  userId String?
+  user   User? @relation(fields: [userId], references: [id])
+
+  // Relación con el documento
+  documentId String?
+  document   Document? @relation(fields: [documentId], references: [id])
+
+  // Relación con la versión (si aplica)
+  versionId  String?
+  version    DocumentVersion? @relation(fields: [versionId], references: [id])
+}
