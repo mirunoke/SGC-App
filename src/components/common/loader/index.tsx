@@ -9,7 +9,7 @@ const Loader = () => {
         src="/lotties/loading.lottie"
         autoplay
         loop
-        style={{ height: '320px', width: '320px' }}
+        style={{ height: '300px', width: '300px' }}
       >
       </DotLottiePlayer>
     </div>

@@ -8,7 +8,6 @@ import { LoginSchema } from "@/schemas/auth/register";
 import { Input } from "@/components/ui/input";
 import { motion } from "framer-motion";
 import { useSearchParams } from "next/navigation";
-import { Social } from "@/components/auth/social";
 import { FiMail, FiLock } from "react-icons/fi";
 
 const font = Poppins({
@@ -80,10 +79,10 @@ export const LoginForm = () => {
   };
 
   return (
-    <motion.div className="flex flex-col items-center space-y-6" initial="hidden" animate="visible">
-      <h1 className="text-small font-bold text-center">Ingresa tus credenciales</h1>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 w-full max-w-sm">
+    
+    <motion.div className="flex flex-col items-center" animate="visible">
+    <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 w-100 max-w-sm">
           <div className="space-y-4">
             {showTwoFactor && (
               <FormField
@@ -160,11 +159,10 @@ export const LoginForm = () => {
           <FormSuccess message={success} />
 
           <motion.div className="my-4" variants={item}>
-            <Social />
           </motion.div>
           <motion.div variants={item}>
-            <Button disabled={isSubmitting} type="submit" className="-mt-6 w-full inline-flex justify-center rounded-md bg-primary px-10 py-4 text-center text-white hover:bg-opacity-90">
-              {showTwoFactor ? "Autorizar" : "Entrar"}
+            <Button disabled={isSubmitting} type="submit" className="-mt-6 w-full inline-flex justify-center rounded-md bg-primary px-10 py-4 text-center text-bold text-white hover:bg-black">
+              {showTwoFactor ? "Autorizar" : "Iniciar sesión"}
             </Button>
           </motion.div>
         </form>

@@ -27,26 +27,3 @@ const item = {
   }
 };
 
-
-export const Social = () => {
-  const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl");
-
-  // Evitamos el envío predeterminado del formulario.
-  const OnClick = (provider: "google", event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    signIn(provider, {
-      callbackUrl: callbackUrl || DEFAULT_LOGIN_REDIRECT,
-    });
-  };
-
-  return (
-    <div className=" items-center w-full gap-x-1.5">
-      <motion.div variants={item}>
-        <Button type="button" size="sm" className="w-full h-12 hover:bg-primary-50" variant="outline" onClick={(event) => OnClick("google", event)}>
-          <FcGoogle className="h-5 w-5 mr-2" /> Iniciar con Google
-        </Button>
-      </motion.div>
-    </div>
-  );
-};

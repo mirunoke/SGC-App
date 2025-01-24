@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/card";
 import {motion} from "framer-motion";
 import { Header } from "@/components/auth/header";
-import { Social } from "@/components/auth/social";
 import { BackButton } from "@/components/auth/back-button";
 
 interface CardWrapperProps{
@@ -17,7 +16,6 @@ interface CardWrapperProps{
     headerLabel: string;
     backButtonLabel: string;
     backButtonHref: string;
-    showSocial?: boolean;
 };
 
 
@@ -46,8 +44,6 @@ export const CardWrapper = ({
     headerLabel,
     backButtonLabel,
     backButtonHref,
-    showSocial
-
 }: CardWrapperProps) => {
     return (
         <motion.div
@@ -68,14 +64,6 @@ export const CardWrapper = ({
 
               </CardContent>
              
-        
-            {showSocial && (
-              
-                <CardFooter>
-                  <Social />
-                </CardFooter>
-             
-            )}
             <motion.div variants={item}>
               <CardFooter>
                 <BackButton

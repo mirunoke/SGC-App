@@ -94,7 +94,7 @@ body,
 }
 
 ::-webkit-scrollbar-track {
-  background: #2b5973; /* Color del fondo de la barra */
+  background: #13a538; /* Color del fondo de la barra */
 }
 
 ::-webkit-scrollbar-thumb {
@@ -109,12 +109,12 @@ body,
 /* Firefox */
 * {
   scrollbar-width: auto; /* Ancho de la barra en Firefox */
-  scrollbar-color: #2b5973 #f1f1f10a; /* Color de la barra y su fondo en Firefox */
+  scrollbar-color: #13a538 #f1f1f10a; /* Color de la barra y su fondo en Firefox */
 }
 
 /* Cambia el color de fondo y el color del texto cuando se selecciona */
 ::selection {
-  background-color: #2b5973; /* Color de fondo de la selección */
+  background-color: #13a538; /* Color de fondo de la selección */
   color: #ffffff; /* Color del texto seleccionado */
 }
 

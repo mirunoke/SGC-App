@@ -20,8 +20,7 @@ import { Button } from "@/components/ui/button";
 import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
 import { reset } from "@/actions/reset";
-import { FiLock } from "react-icons/fi";
-import { Input as NextUIInput } from "@nextui-org/react";
+import { FiMail } from "react-icons/fi";
 
 export const ResetForm = () => {
   const [error, setError] = useState<string | undefined>("");
@@ -70,7 +69,6 @@ export const ResetForm = () => {
 
   return (
     <div className="p-6 space-y-4">
-      <h1 className="text-small font-bold text-center md:text-white">Vuelve a empezar</h1>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <div className="space-y-4">
@@ -81,16 +79,17 @@ export const ResetForm = () => {
 
                 <FormItem>
                   <motion.div variants={item}>
+                    <FormLabel>Correo electronico</FormLabel>
                     <FormControl>
                       <div className="relative w-100">
-                        <NextUIInput
+                        <Input
                           {...field}
                           disabled={isPending}
-                          label="Correo electrónico"
-                          className={`max-w-100 ${form.formState.errors.email ? 'border-red-500' : 'flex w-100s flex-wrap md:flex-nowrap gap-1.5'}`}
-                          isInvalid={!!form.formState.errors.email}
+                          placeholder="Correo electrónico"
                           type="email"
+                          className="w-full rounded-[7px] border-[1.5px] bg-slate-50 border-gray-400 bg-transparent px-5.5 py-3 pl-11 text-dark outline-none transition focus:border-primary active:border-primary dark:border-dark-3 dark:bg-dark-2 dark:text-white"
                         />
+                        <FiMail className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400" />
                       </div>
                     </FormControl>
                   </motion.div>
@@ -115,28 +114,9 @@ export const ResetForm = () => {
           ) : null}
 
 
-          <motion.div variants={item}>
-            <button
-              disabled={isPending} type="submit"
-              className="overflow-hidden w-100 p-2 h-12 bg-dark text-white border-none rounded-md text-xl font-bold cursor-pointer relative z-10 group"
-            >
-              Restablecer contraseña
-              <span
-                className="absolute w-100 h-32 -top-8 -left-2 bg-[#1e3e50] rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-500 duration-1000 origin-bottom"
-              ></span>
-              <span
-                className="absolute w-100 h-32 -top-8 -left-2 bg-primary-50 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-700 duration-700 origin-bottom"
-              ></span>
-              <span
-                className="absolute w-100 h-32 -top-8 -left-2 bg-[#557a8f] rounded-full transform scale-x-0 group-hover:scale-x-125 transition-transform group-hover:duration-1000 duration-500 origin-bottom"
-              ></span>
-              <span
-                className="group-hover:opacity-100 group-hover:duration-1000 duration-100 opacity-0 absolute top-2.5 left-30 z-10 text-center text-white"
-              >Recuperar cuenta</span>
-
-            </button>
-          </motion.div>
-
+          <Button disabled={isPending} type="submit" className="-mt-6 w-full inline-flex justify-center rounded-md bg-primary px-10 py-4 text-center text-bold text-white hover:bg-black">
+            Restablecer contaseña
+          </Button>
         </form>
       </Form>
     </div>

@@ -4,7 +4,7 @@ import Breadcrumb from "@/components/breadcrumbs/breadcrumb";
 import Settings from "@/components/user/settings";
 
 export const metadata: Metadata = {
-  title: "SGC"
+  title: "Sistema de gestión de calidad"
 };
 
 const SettingsPage = () => {

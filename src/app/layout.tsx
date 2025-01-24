@@ -5,7 +5,7 @@ import './globals.css'
 import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
-  title: 'SGC'
+  title: 'Sistema de gestión de calidad'
 }
 
 export default async function RootLayout({

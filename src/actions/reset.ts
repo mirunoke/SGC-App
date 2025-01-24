@@ -19,7 +19,7 @@ export const reset = async (values: z.infer<typeof ResetSchema>) => {
   // Verifica si el usuario existe
   const existingUser = await getUserByEmail(email);
   if (!existingUser) {
-    return { error: "Correo no encontrado!" };
+    return { error: "¡Correo no encontrado!" };
   }
 
   // Genera un token de restablecimiento de contraseña y envía el correo
@@ -29,5 +29,5 @@ export const reset = async (values: z.infer<typeof ResetSchema>) => {
     passwordResetToken.token,
   );
 
-  return { success: "Correo de recuperación enviado!" };
+  return { success: "¡Correo de recuperación enviado!" };
 }

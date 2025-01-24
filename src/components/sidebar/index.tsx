@@ -7,9 +7,7 @@ import Image from "next/image";
 import SidebarItem from "@/components/sidebar/sidebar-item";
 import ClickOutside from "@/components/ClickOutside";
 import useLocalStorage from "@/hooks/useLocalStorage";
-import { IoBed } from "react-icons/io5";
-import { FaGears } from "react-icons/fa6";
-import { BsFileEarmarkBarGraphFill } from "react-icons/bs";
+import { IoDocument , IoNotificationsSharp , IoMailSharp } from "react-icons/io5";
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -22,36 +20,35 @@ const menuGroups = [
     menuItems: [
       {
         icon: (
-          <IoBed />
+          <IoMailSharp/>
         ),
-        label: "Habitaciones",
+        label: "Solicitudes",
         route: "#",
         children: [
-          { label: "Publicar habitación", route: "/rooms/add-room" },
-          { label: "Mis habitaciones", route: "/rooms/list-room" },
+          { label: "Mis solicitudes", route: "#" },
+          { label: "Solicitudes enviadas", route: "#" },
         ],
       },
       {
         icon: (
-          <FaGears />
+          <IoDocument/>
         ),
-        label: "Tratos",
+        label: "Gestión documental",
         route: "#",
         children: [
-          { label: "Solicitudes", route: "/admin/requests" },
-          { label: "Chats activos", route: "/admin/chats" },
-          { label: "Tratos", route: "/admin/hirings" },
+          { label: "Mis documentos", route: "#" },
+          { label: "Carga de documentos", route: "#" },
+          { label: "Control de versiones", route: "#" },
         ],
       },
       {
         icon: (
-          <BsFileEarmarkBarGraphFill />
+          <IoNotificationsSharp  />
         ),
-        label: "Administración",
+        label: "Notificaciones",
         route: "#",
         children: [
-          { label: "Recibos", route: "#"},
-          { label: "Graficas", route: "#" },
+          { label: "Pendientes de acción", route: "#"},
         ],
       },
     ],
@@ -79,7 +76,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
             <Image
               width={196}
               height={42}
-              src={"/logos/logo_negro.png"}
+              src={"/logos/EUROIMMUN.svg"}
               alt="Logo"
               priority
               className="dark:hidden"
@@ -88,7 +85,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
             <Image
               width={196}
               height={42}
-              src={"/logos/logo_blanco.png"}
+              src={"/logos/EUROIMMUN.svg"}
               alt="Logo"
               priority
               className="hidden dark:block"

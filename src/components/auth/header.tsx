@@ -41,9 +41,9 @@ export const Header = ({
       <div className="w-full flex flex-col gap-y-4 items-center justify-center">
           <motion.div variants={item}>
           <Image
-           src="/logos/logo_negro.png"
+           src="/logos/euroimmun.svg"
            alt="SGC Logo"
-           width={48}
+           width={400}
            height={48} 
            className="h-12"
           />
