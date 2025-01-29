@@ -1,14 +1,11 @@
 "use client";
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { DotLottiePlayer } from "@dotlottie/react-player";
 import { LoginForm } from "@/components/auth/login-form";
 import { RegisterForm } from "@/components/auth/register-form";
 import { ResetForm } from "@/components/auth/reset-form";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { Link } from "@chakra-ui/react";
-import SparklesText from "@/components/ui/sparkles-text";
 import Image from "next/image";
 
 export default function Home() {

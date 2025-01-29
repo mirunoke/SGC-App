@@ -29,7 +29,7 @@ const config: Config = {
         current: "currentColor",
         transparent: "transparent",
         white: "#fafafa",
-        primary: "#13a538;",
+        primary: "#13a538",
         stroke: "#E6EBF1",
         "stroke-dark": "#0B0C0E",
         dark: {
@@ -388,17 +388,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [nextui(), addVariablesForColors],
+  plugins: [nextui()],
 };
 
-function addVariablesForColors({ addBase, theme }: any) {
-  let allColors = flattenColorPalette(theme("colors"));
-  let newVars = Object.fromEntries(
-    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
-  );
- 
-  addBase({
-    ":root": newVars,
-  });
-}
 export default config;

@@ -11,6 +11,7 @@ import Twitter from "next-auth/providers/twitter";
 import Reddit from "next-auth/providers/reddit";
 
 export default {
+  trustHost: true,
   providers: [
     Discord({
       clientId: process.env.DISCORD_CLIENT_ID,
